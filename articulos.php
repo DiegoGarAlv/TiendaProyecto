@@ -19,7 +19,7 @@ function mostrarArticulos(){
                 <form method="post">
                     <button type="submit" name="btnTodos" class="btn btn-primary">Todos</button>
                     <button type="submit" name="btnEscritorios" class="btn btn-primary">Escritorios</button>
-                    <button type="submit" name="btnSillas" class="btn btn-primary">Sillos</button>
+                    <button type="submit" name="btnSillas" class="btn btn-primary">Sillas</button>
                 </form>
                 </div>
                 <div class="col-lg-4"></div>
