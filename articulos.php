@@ -13,6 +13,7 @@ function mostrarArticulos(){
    
 
     print'
+        <link rel="stylesheet" type="text/css" href="style.css">
             <div class="row">
                 <div class="col-lg-4"></div>
                 <div class="btn-group col-lg-4">
