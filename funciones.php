@@ -47,14 +47,13 @@ function cabecera(){
       		</a> 
 	  </div>
 	</nav>
-	<div class="container">
-
-	';
+	<div class="container">';
 }
 
 function pie(){
 	print '</div>
 	</body>
+	<script type="text/javascript" src="js/codigo.js"></script>
 	</html>';
 }
 ?>
