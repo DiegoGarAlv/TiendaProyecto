@@ -30,7 +30,8 @@ function cabecera(){
 	      	print'
 	      	<li><a href="verpedidos.php">Ver Pedidos <span class="glyphicon glyphicon-folder-open"></span></a></li>
 	      	<li><a href="añadirarticulo.php">Añadir Artículos <span class="glyphicon glyphicon-level-up"></span></a></li>
-	      	<li><a href="cerrarsesion.php">Cerrar Sesión <span class="glyphicon glyphicon-remove"></span></a></li>';
+	      	<li><a href="verclientes.php">Ver Clientes <span class="glyphicon glyphicon-user"></span></a></li>			  
+			<li><a href="cerrarsesion.php">Cerrar Sesión <span class="glyphicon glyphicon-remove"></span></a></li>';
 	  	  }
 	  	  if($_SESSION['usuario']!="admin"&&$_SESSION['usuario']!=null)
 	      {

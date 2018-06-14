@@ -2,7 +2,29 @@
 include("funciones.php");
 cabecera();
 session_start();
-print'<table class="table table-striped">
+print'
+<div class="row">
+	<div class="col-lg-3"></div>
+	<div class="col-lg-6">
+		<form method="post" id="formFechas">
+		<div class="form-group col-lg-6">			
+			<label for="fechaDesde">Fecha desde:</label>				
+			<input type="date" class="form-control" id="fechaDesde" name="fechaDesde">
+		</div>
+		<div class="form-group col-lg-6">					
+			<label for="fechaDesde">Fecha desde:</label>				
+			<input type="date" class="form-control" id="fechaHasta" name="fechaHasta">
+		</div>
+		<div class="col-lg-6">
+			<button type="submit" name="btnFechas" class="btn btn-primary">Buscar</button>
+			<button type="submit" name="btnTodos" class="btn btn-primary">Todos</button>			
+		</div>
+		</form>
+	</div>
+	<div class="col-lg-3"></div>
+</div>
+
+<table class="table table-striped">
 			    <thead>
 			      <tr>
 			        <th>Número de pedido</th>
@@ -11,11 +33,19 @@ print'<table class="table table-striped">
 			        <th>Total del pedido</th>
 			      </tr>
 			    </thead>
-			    <tbody>';
+				<tbody>';
+
 				$conexion=mysqli_connect("localhost","root","","tiendamuebles")or die("Fallo en la conexión"); 
-				if($_SESSION['usuario']=="admin")
+								
+				if(($_SESSION['usuario']=="admin" && !isset($_POST['btnFechas'])) || ($_SESSION['usuario']=="admin" && isset($_POST['btnTodos'])))
 				{
 					$select="SELECT * FROM pedidos";
+				}
+				else if($_SESSION['usuario']=="admin" && isset($_POST['btnFechas']))
+				{
+					$fechaDesde=$_POST["fechaDesde"];
+					$fechaHasta=$_POST["fechaHasta"];
+					$select="SELECT * FROM pedidos WHERE fecha BETWEEN '".$fechaDesde."' AND '".$fechaHasta."'";				
 				}
 				else
 				{
@@ -42,13 +72,8 @@ print'<table class="table table-striped">
 			      	</tr>';
 
 				}
-
-
-				print '</tbody>
-  				</table>
-
-
-			    ';
+print '</tbody>
+</table>';
 
 pie();
 ?>

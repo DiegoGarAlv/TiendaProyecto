@@ -6,3 +6,7 @@
 .thumbnail:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.6);
   }
+#banner{
+  background-image: url("imagenes/banner.jpg");
+  height: 300px;
+}
