@@ -29,7 +29,8 @@ function cabecera(){
 	      {
 	      	print'
 	      	<li><a href="verpedidos.php">Ver Pedidos <span class="glyphicon glyphicon-folder-open"></span></a></li>
-	      	<li><a href="añadirarticulo.php">Añadir Artículos <span class="glyphicon glyphicon-level-up"></span></a></li>
+			<li><a href="añadirarticulo.php">Añadir Artículos <span class="glyphicon glyphicon-level-up"></span></a></li>
+			<li><a href="anadirfamilia.php">Añadir Familias <span class="glyphicon glyphicon-stats"></span></a></li>
 	      	<li><a href="verclientes.php">Ver Clientes <span class="glyphicon glyphicon-user"></span></a></li>			  
 			<li><a href="cerrarsesion.php">Cerrar Sesión <span class="glyphicon glyphicon-remove"></span></a></li>';
 	  	  }
@@ -54,7 +55,9 @@ function cabecera(){
 function pie(){
 	print '</div>
 	</body>
-	<script type="text/javascript" src="js/codigo.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<script type="text/javascript" src="js/anadirarticulo.js"></script>	
+	<script type="text/javascript" src="js/anadirfamilia.js"></script>		
 	</html>';
 }
 ?>

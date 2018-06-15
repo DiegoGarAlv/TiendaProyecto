@@ -1,11 +1,12 @@
-$("#form").submit(function(){
+$("#form").submit(function(e){
+    var bValido = true;
     var usr = document.getElementById("usuario").value;
     var pas = document.getElementById("contrasena").value;
     
     if(usr == "")
     {
         document.getElementById("usrval").style.display="";  
-        return false;               
+        bValido=false;             
     }
     else
     {
@@ -15,17 +16,19 @@ $("#form").submit(function(){
     if(pas == "")
     {
         document.getElementById("pasval").style.display="";
-        return false;        
+        bValido=false;
     }
     else
     {
         document.getElementById("pasval").style.display="none";
     } 
-
-    if(usr != "" && pas != "")
+    if(!bValido)
+    {
+        e.preventDefault();
+    }
+    else if(usr != "" && pas != "")
     {
         document.getElementById("usrval").style.display="none";
-        document.getElementById("pasval").style.display="none";
-        return true;
+        document.getElementById("pasval").style.display="none";       
     }    
 });
