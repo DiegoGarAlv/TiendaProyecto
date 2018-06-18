@@ -2,28 +2,31 @@
 include("funciones.php");
 cabecera();
 session_start();
+if($_SESSION['usuario']=="admin")
+{
 print'
-<div class="row">
-	<div class="col-lg-3"></div>
-	<div class="col-lg-6">
-		<form method="post" id="formFechas">
-		<div class="form-group col-lg-6">			
-			<label for="fechaDesde">Fecha desde:</label>				
-			<input type="date" class="form-control" id="fechaDesde" name="fechaDesde">
-		</div>
-		<div class="form-group col-lg-6">					
-			<label for="fechaDesde">Fecha desde:</label>				
-			<input type="date" class="form-control" id="fechaHasta" name="fechaHasta">
-		</div>
+	<div class="row">
+		<div class="col-lg-3"></div>
 		<div class="col-lg-6">
-			<button type="submit" name="btnFechas" class="btn btn-primary">Buscar</button>
-			<button type="submit" name="btnTodos" class="btn btn-primary">Todos</button>			
+			<form method="post" id="formFechas">
+			<div class="form-group col-lg-6">			
+				<label for="fechaDesde">Fecha desde:</label>				
+				<input type="date" class="form-control" id="fechaDesde" name="fechaDesde">
+			</div>
+			<div class="form-group col-lg-6">					
+				<label for="fechaDesde">Fecha desde:</label>				
+				<input type="date" class="form-control" id="fechaHasta" name="fechaHasta">
+			</div>
+			<div class="col-lg-6">
+				<button type="submit" name="btnFechas" class="btn btn-primary">Buscar</button>
+				<button type="submit" name="btnTodos" class="btn btn-primary">Todos</button>			
+			</div>
+			</form>
 		</div>
-		</form>
-	</div>
-	<div class="col-lg-3"></div>
-</div>
-
+		<div class="col-lg-3"></div>
+	</div>';
+}
+print'
 <table class="table table-striped">
 			    <thead>
 			      <tr>
@@ -74,6 +77,9 @@ print'
 				}
 print '</tbody>
 </table>';
-
+if($_SESSION['usuario']=="admin")
+{
+	print'<button id="generarListadoPedidos" name="generarListadoPedidos" class="btn btn-danger">Generar PDF</button>';
+}
 pie();
 ?>

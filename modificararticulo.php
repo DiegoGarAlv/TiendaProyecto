@@ -94,13 +94,8 @@ if(isset($_POST['btnModificar']))
             <label for="stock">Stock:</label>
             <input type="text" class="form-control" id="stock" name="stock" value="'.$filaArticulo['stock'].'">
             <div class="alert alert-danger" id="stoval" style="color:Red;display:none">Campo Stock Vacío</div>
-            <div class="alert alert-danger" id="stoval2" style="color:Red;display:none">El precio debe ser numérico</div>		
-        </div>
-        <div class="form-group">
-            <label for="imagen">Imagen:</label>
-            <input type="text" class="form-control" id="imagen" name="imagen" value="'.$filaArticulo['imagen'].'">
-            <div class="alert alert-danger" id="imgval" style="color:Red;display:none">Campo Imagen Vacío</div>
-        </div>
+            <div class="alert alert-danger" id="stoval2" style="color:Red;display:none">El stock debe ser numérico</div>		
+        </div>     
         
         <button type="submit" name="btnAceptarModificar" class="btn btn-primary">Aceptar</button>
     </form>
@@ -115,9 +110,9 @@ if(isset($_POST['btnAceptarModificar']))
     $precio = $_POST['precio'];
     $familia = $_POST['familia'];
     $stock = $_POST['stock'];
-    $imagen = $_POST['imagen'];        
+         
 
-    $updatear="UPDATE producto SET `nombre`='".$nombre."', `nombre_corto`='".$nombrecorto."', `descripcion`='".$descripcion."', `PVP`='".$precio."', `familia`='".$familia."', `stock`='".$stock."',`imagen`='".$imagen."' WHERE cod='".$codigo."'";
+    $updatear="UPDATE producto SET `nombre`='".$nombre."', `nombre_corto`='".$nombrecorto."', `descripcion`='".$descripcion."', `PVP`='".$precio."', `familia`='".$familia."', `stock`='".$stock."' WHERE cod='".$codigo."'";
     $consulta2=mysqli_query($conexion,$updatear)or die("No se ha updateado");
     
     if($consulta2)

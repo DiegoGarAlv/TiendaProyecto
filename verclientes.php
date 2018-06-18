@@ -31,7 +31,7 @@ print'<table class="table table-striped">
 				print '</tbody>
   				</table>
 
-
+					<button id="generarListadoClientes" name="generarListadoClientes" class="btn btn-danger">Generar PDF</button>
 			    ';
 
 pie();

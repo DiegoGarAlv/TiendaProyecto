@@ -32,7 +32,6 @@ $("#formModificarArticulos").submit(function(e){
     var pre = document.getElementById("precio").value.trim(); 
     var fam = document.getElementById("familia").value.trim();   
     var sto = document.getElementById("stock").value.trim();
-    var ima = document.getElementById("imagen").value.trim();
     
     var regexNum = /^[0-9]*$/;
     var regexLet = /[A-Za-z]/;
@@ -134,16 +133,6 @@ $("#formModificarArticulos").submit(function(e){
         document.getElementById("stoval2").style.display="none";
     }
 
-    //validacion imagen
-    if(ima == "")
-    {
-        document.getElementById("imgval").style.display="";
-        bValido=false;
-    }
-    else
-    {
-        document.getElementById("imgval").style.display="none";
-    }
 
     if(!bValido)
     {
@@ -154,8 +143,7 @@ $("#formModificarArticulos").submit(function(e){
         document.getElementById("nomval").style.display="none";
         document.getElementById("nomcorval").style.display="none";
         document.getElementById("desval").style.display="none";
-        document.getElementById("preval").style.display="none"; 
-        document.getElementById("famval").style.display="none";    
+        document.getElementById("preval").style.display="none";  
         document.getElementById("stoval").style.display="none";
         document.getElementById("imgval").style.display="none"; 
         

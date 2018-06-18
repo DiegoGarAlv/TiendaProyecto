@@ -8,7 +8,7 @@ $consulta1=mysqli_query($conexion1,$select1)or die("Fallo en la select");
 $numFilas1=mysqli_num_rows($consulta1);
 
 print'
-<form method="post" id="formAnadirArticulos">
+<form method="post" enctype="multipart/form-data" id="formAnadirArticulos">
 	<div class="form-group">
 	    <label for="codigo">Código del producto:</label>
 		<input type="text" class="form-control" id="codigo" placeholder="Código" name="codigo">
@@ -59,8 +59,8 @@ print'
 		<div class="alert alert-danger" id="stoval2" style="color:Red;display:none">El precio debe ser numérico</div>		
     </div>
     <div class="form-group">
-      	<label for="imagen">Imagen:</label>
-		<input type="text" class="form-control" id="imagen" placeholder="NombreDeLaImagen.jpg" name="imagen">
+      	<label for="uploadfile">Imagen:</label>
+		<input type="file" class="form-control" id="uploadfile" size="2097152" name="uploadfile">
 		<div class="alert alert-danger" id="imgval" style="color:Red;display:none">Campo Imagen Vacío</div>
     </div>
     
@@ -76,7 +76,35 @@ if(isset($_POST['btnAceptar']))
 	$precio = $_POST['precio'];
 	$familia = $_POST['familia'];
 	$stock = $_POST['stock'];
-	$imagen = $_POST['imagen'];
+	$imagen = $cod.'.jpg';
+
+	//Para guardar la imagen
+	
+	$dir="imagenes";
+	//asegurarse que la transferencia del archivo cargado se ha efectuado correctamente
+	
+	list($width, $height, $type, $attr) = getimagesize($_FILES['uploadfile']['tmp_name']);
+
+	// asegurarse de que el archivo cargado es un tipo de imagen admitido
+	$error = 'El archivo que vd. ha subido no es de un tipo soportado';
+	switch ($type)
+	{
+		case IMAGETYPE_GIF:
+			$image = imagecreatefromgif($_FILES['uploadfile']['tmp_name'])or die($error);
+			break;
+		case IMAGETYPE_JPEG:
+			$image = imagecreatefromjpeg($_FILES['uploadfile']['tmp_name'])or die($error);
+			break;
+		case IMAGETYPE_PNG:
+			$image = imagecreatefrompng($_FILES['uploadfile']['tmp_name'])or die($error);
+			break;
+		default:
+			die($error);
+	}
+
+	imagejpeg($image, $dir . '/' . $cod  . '.jpg');
+	imagedestroy($image);
+	//
 
 	$existe = false;
 

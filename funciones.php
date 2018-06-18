@@ -34,7 +34,8 @@ function cabecera(){
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Artículos<span class="caret"></span></a>
 				<ul class="dropdown-menu" style="background-color: rgb(196, 192, 192);">
 					<li><a href="añadirarticulo.php">Añadir Artículos <span class="glyphicon glyphicon-plus"></span></a></li>
-					<li><a href="modificararticulo.php">Modificar Artículos <span class="glyphicon glyphicon-pencil"></span></a></li>				  
+					<li><a href="modificararticulo.php">Modificar Artículos <span class="glyphicon glyphicon-pencil"></span></a></li>
+					<li><a href="verproductos.php">Listar Artículos <span class="glyphicon glyphicon-search"></span></a></li>				  
 				</ul>
 		  	</li>
 			
@@ -73,7 +74,11 @@ function pie(){
 	<script type="text/javascript" src="js/modificararticulo.js"></script>	
 	<script type="text/javascript" src="js/anadirfamilia.js"></script>
 	<script type="text/javascript" src="js/modificarfamilia.js"></script>
-	<script type="text/javascript" src="js/registrousuario.js"></script>					
+	<script type="text/javascript" src="js/registrousuario.js"></script>
+	<script type="text/javascript" src="js/jspdf.min.js"></script>
+	<script type="text/javascript" src="js/jspdf.plugin.autotable.min.js"></script>	
+	<script type="text/javascript" src="js/listados.js"></script>
+	<script type="text/javascript" src="js/modificardatos.js"></script>					
 	</html>';
 }
 ?>

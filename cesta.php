@@ -121,8 +121,7 @@ function mostrar(){
 						$resultadocodigo=mysqli_fetch_assoc($consultacodigo);
 
 						$insertarLineas="INSERT INTO lineas (num_pedido,num_linea,producto,unidades) VALUES (".$resultadomax['maximo'].",".($i+1).",'".$resultadocodigo['cod']."',".$_SESSION['unidades'][$i].")";
-						$consulta4=mysqli_query($conexion,$insertarLineas);
-						// or die("PEDIDO INSERTADO-Fallo línea")
+						$consulta4=mysqli_query($conexion,$insertarLineas);						
 					}
 
 					print'<div class="alert alert-success">

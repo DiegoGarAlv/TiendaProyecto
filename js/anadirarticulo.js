@@ -7,7 +7,7 @@ $("#formAnadirArticulos").submit(function(e){
     var pre = document.getElementById("precio").value.trim();
     var fam = document.getElementById("familia").value.trim();
     var sto = document.getElementById("stock").value.trim();
-    var ima = document.getElementById("imagen").value.trim();
+    var ima = document.getElementById("uploadfile").value.trim();
     
     var regexNum = /^[0-9]*$/;
     var regexLet = /[A-Za-z]/;
