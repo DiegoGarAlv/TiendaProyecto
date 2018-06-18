@@ -2,26 +2,35 @@
 include("funciones.php");
 cabecera();
 print'
-<form method="post">
+<form method="post" id="formRegistro">
 	<div class="form-group">
 	    <label for="dni">DNI:</label>
-	    <input type="text" class="form-control" id="dni" placeholder="DNI" name="dni">
+		<input type="text" class="form-control" id="dni" placeholder="DNI" name="dni">
+		<div class="alert alert-danger" id="dnival" style="color:Red;display:none">Campo DNI Vacío</div>
+		<div class="alert alert-danger" id="dnival2" style="color:Red;display:none">El DNI debe ser válido</div>
 	</div>
 	<div class="form-group">
 	    <label for="nombre">Nombre:</label>
-	    <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
+		<input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
+		<div class="alert alert-danger" id="nomval" style="color:Red;display:none">Campo Nombre Vacío</div>
+		<div class="alert alert-danger" id="nomval2" style="color:Red;display:none">El nombre sólo puede contener letras.</div>
 	</div>
 	<div class="form-group">
 	    <label for="direccion">Dirección:</label>
-	    <input type="text" class="form-control" id="direccion" placeholder="Dirección" name="direccion">
+		<input type="text" class="form-control" id="direccion" placeholder="Dirección" name="direccion">
+		<div class="alert alert-danger" id="dirval" style="color:Red;display:none">Campo Dirección Vacío</div>
 	</div>
 	<div class="form-group">
 	    <label for="usuario">Usuario:</label>
-	    <input type="text" class="form-control" id="usuario" placeholder="Usuario" name="usuario">
+		<input type="text" class="form-control" id="usuario" placeholder="Usuario" name="usuario">
+		<div class="alert alert-danger" id="usuval" style="color:Red;display:none">Campo Precio Vacío</div>
+		<div class="alert alert-danger" id="usuval2" style="color:Red;display:none">El nombre de usuario sólo puede contener letras.</div>
 	</div>
     <div class="form-group">
-      	<label for="contraseña">Contraseña:</label>
-      	<input type="password" class="form-control" id="contraseña" placeholder="Contraseña" name="contraseña">
+      	<label for="contrasena">Contraseña:</label>
+		<input type="password" class="form-control" id="contrasena" placeholder="Contraseña" name="contrasena">
+		<div class="alert alert-danger" id="pasval" style="color:Red;display:none">Campo Contraseña Vacío</div>
+		<div class="alert alert-danger" id="pasval2" style="color:Red;display:none">La contraseña debe tener entre 4 y 8 caracteres y al menos un número</div>  
     </div>
     
 	<button type="submit" name="btnAceptar" class="btn btn-primary">Aceptar</button>
@@ -33,38 +42,25 @@ if(isset($_POST['btnAceptar']))
 	$nombre = $_POST['nombre'];
 	$direccion = $_POST['direccion'];
 	$usuario = $_POST['usuario'];
-	$contraseña = $_POST['contraseña'];
+	$contraseña = $_POST['contrasena'];
+	
+	$conexion=mysqli_connect("localhost","root","","tiendamuebles")or die("Fallo en la conexión"); 
+	$selectConsultaExiste = "SELECT dni FROM clientes";
+	$consultaExiste=mysqli_query($conexion,$selectConsultaExiste)or die("No se ha hecho la select");
+	$numFilasExiste=mysqli_num_rows($consultaExiste);
 
-
-	if($dni=="")
-	{
-		print'<div class="alert alert-danger">
-  		<strong>¡CUIDADO!</strong> Campo DNI vacío.
-		</div>';
+	for ($i = 0; $i <$numFilasExiste ; $i++) {
+		$filaExiste=mysqli_fetch_array($consultaExiste);
+		if($filaExiste['dni'] == $dni)
+		{
+			$existe = true;
+		}
 	}
-
-	else if($nombre=="")
+	
+	if($existe)
 	{
 		print'<div class="alert alert-danger">
-  		<strong>¡CUIDADO!</strong> Campo Nombre vacío.
-		</div>';
-	}
-	else if($direccion=="")
-	{
-		print'<div class="alert alert-danger">
-  		<strong>¡CUIDADO!</strong> Campo Dirección vacío.
-		</div>';
-	}
-	else if($usuario=="")
-	{
-		print'<div class="alert alert-danger">
-  		<strong>¡CUIDADO!</strong> Campo Usuario vacío.
-		</div>';
-	}
-	else if($contraseña=="")
-	{
-		print'<div class="alert alert-danger">
-  		<strong>¡CUIDADO!</strong> Campo Contraseña vacío.
+		<strong>¡CUIDADO!</strong> El Usuario ya existe.
 		</div>';
 	}
 	else
@@ -75,10 +71,11 @@ if(isset($_POST['btnAceptar']))
 		if($consulta)
 		{
 			print'<div class="alert alert-success">
-	  		<strong>¡LISTO!</strong> Usuario registrado.
+			<strong>¡LISTO!</strong> Usuario registrado.
 			</div>';
 		}
-	} 
+	}
+	
 }
 
 

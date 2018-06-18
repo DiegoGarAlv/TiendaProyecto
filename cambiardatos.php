@@ -73,9 +73,5 @@ if(isset($_POST['btnAceptar']))
 		}
 	} 
 }
-
-
-
-
 pie();
  ?>

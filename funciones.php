@@ -28,10 +28,23 @@ function cabecera(){
 	  	  if($_SESSION['usuario']=="admin")
 	      {
 	      	print'
-	      	<li><a href="verpedidos.php">Ver Pedidos <span class="glyphicon glyphicon-folder-open"></span></a></li>
-			<li><a href="añadirarticulo.php">Añadir Artículos <span class="glyphicon glyphicon-level-up"></span></a></li>
-			<li><a href="anadirfamilia.php">Añadir Familias <span class="glyphicon glyphicon-stats"></span></a></li>
-	      	<li><a href="verclientes.php">Ver Clientes <span class="glyphicon glyphicon-user"></span></a></li>			  
+			<li><a href="verpedidos.php">Ver Pedidos <span class="glyphicon glyphicon-folder-open"></span></a></li>
+			<li><a href="verclientes.php">Ver Clientes <span class="glyphicon glyphicon-user"></span></a></li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Artículos<span class="caret"></span></a>
+				<ul class="dropdown-menu" style="background-color: rgb(196, 192, 192);">
+					<li><a href="añadirarticulo.php">Añadir Artículos <span class="glyphicon glyphicon-plus"></span></a></li>
+					<li><a href="modificararticulo.php">Modificar Artículos <span class="glyphicon glyphicon-pencil"></span></a></li>				  
+				</ul>
+		  	</li>
+			
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Familias<span class="caret"></span></a>
+				<ul class="dropdown-menu" style="background-color: rgb(196, 192, 192);">
+				<li><a href="anadirfamilia.php">Añadir Familias <span class="glyphicon glyphicon-plus"></span></a></li>
+				<li><a href="modificarfamilia.php">Modificar Familias <span class="glyphicon glyphicon-pencil"></span></a></li>  
+				</ul>
+		  	</li>		  
 			<li><a href="cerrarsesion.php">Cerrar Sesión <span class="glyphicon glyphicon-remove"></span></a></li>';
 	  	  }
 	  	  if($_SESSION['usuario']!="admin"&&$_SESSION['usuario']!=null)
@@ -57,7 +70,10 @@ function pie(){
 	</body>
 	<script type="text/javascript" src="js/login.js"></script>
 	<script type="text/javascript" src="js/anadirarticulo.js"></script>	
-	<script type="text/javascript" src="js/anadirfamilia.js"></script>		
+	<script type="text/javascript" src="js/modificararticulo.js"></script>	
+	<script type="text/javascript" src="js/anadirfamilia.js"></script>
+	<script type="text/javascript" src="js/modificarfamilia.js"></script>
+	<script type="text/javascript" src="js/registrousuario.js"></script>					
 	</html>';
 }
 ?>
