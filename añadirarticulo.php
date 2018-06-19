@@ -102,8 +102,7 @@ if(isset($_POST['btnAceptar']))
 			die($error);
 	}
 
-	imagejpeg($image, $dir . '/' . $cod  . '.jpg');
-	imagedestroy($image);
+
 	//
 
 	$existe = false;
@@ -130,6 +129,8 @@ if(isset($_POST['btnAceptar']))
 	}
 	else
 	{
+		imagejpeg($image, $dir . '/' . $cod  . '.jpg');
+		imagedestroy($image);
 		$insertar="INSERT producto (cod,nombre,nombre_corto,descripcion,PVP,familia,stock,imagen) VALUES ('$cod','$nombre','$nombreCorto','$descripcion','$precio','$familia','$stock','$imagen')";
 		$consulta=mysqli_query($conexion,$insertar)or die("No se ha insertado");
 		print'<div class="alert alert-success">

@@ -43,7 +43,8 @@ if(isset($_POST['btnModificar']))
     {
         print'<div class="alert alert-success">
         <strong>¡LISTO!</strong> Familia Modificada.
-        </div>';
+		</div>';
+		header("refresh:1; url=principal.php", true, 303);
     } 
 }
 

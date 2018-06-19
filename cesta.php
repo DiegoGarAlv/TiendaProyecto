@@ -166,7 +166,7 @@ function mostrar(){
 					unset($_SESSION["total"]);
 					unset($_SESSION["contador"]);
 
-					header("refresh:2; url=principal.php", true, 303);	
+					header("refresh:1; url=principal.php", true, 303);	
 				}
 
 			}
@@ -182,7 +182,7 @@ function mostrar(){
 				unset($_SESSION["total"]);
 				unset($_SESSION["contador"]);
 
-				header("refresh:2; url=principal.php", true, 303);	
+				header("refresh:0.3; url=principal.php", true, 303);	
 			}	
 			if(isset($_POST['btnSeguir']))
 			{

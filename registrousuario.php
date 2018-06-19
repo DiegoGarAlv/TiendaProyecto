@@ -45,13 +45,13 @@ if(isset($_POST['btnAceptar']))
 	$contraseña = $_POST['contrasena'];
 	
 	$conexion=mysqli_connect("localhost","root","","tiendamuebles")or die("Fallo en la conexión"); 
-	$selectConsultaExiste = "SELECT dni FROM clientes";
+	$selectConsultaExiste = "SELECT dni, usuario FROM clientes";
 	$consultaExiste=mysqli_query($conexion,$selectConsultaExiste)or die("No se ha hecho la select");
 	$numFilasExiste=mysqli_num_rows($consultaExiste);
 
 	for ($i = 0; $i <$numFilasExiste ; $i++) {
 		$filaExiste=mysqli_fetch_array($consultaExiste);
-		if($filaExiste['dni'] == $dni)
+		if($filaExiste['dni'] == $dni||$filaExiste['usuario'] == $usuario)
 		{
 			$existe = true;
 		}
@@ -73,6 +73,7 @@ if(isset($_POST['btnAceptar']))
 			print'<div class="alert alert-success">
 			<strong>¡LISTO!</strong> Usuario registrado.
 			</div>';
+			header("refresh:1; url=principal.php", true, 303);
 		}
 	}
 	

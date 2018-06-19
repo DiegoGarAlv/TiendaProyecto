@@ -4,7 +4,7 @@ session_start();
 cabecera();
 $conexion=mysqli_connect("localhost","root","","tiendamuebles")or die("Fallo en la conexión"); 
 
-$selectArticulo = "SELECT cod,nombre FROM producto";
+$selectArticulo = "SELECT cod,nombre FROM producto WHERE activo='si'";
 $consultaArticulo=mysqli_query($conexion,$selectArticulo)or die("Fallo en la select");
 $numFilasArticulo=mysqli_num_rows($consultaArticulo);
 
@@ -37,6 +37,7 @@ if(isset($_POST['btnEliminar']))
         print'<div class="alert alert-success">
         <strong>¡LISTO!</strong> Artículo Eliminado.
         </div>';
+        header("refresh:1; url=principal.php", true, 303);
     } 
 }
 
@@ -120,6 +121,7 @@ if(isset($_POST['btnAceptarModificar']))
         print'<div class="alert alert-success">
         <strong>¡LISTO!</strong> Datos Cambiados.
         </div>';
+        header("refresh:1; url=principal.php", true, 303);
     }        
 }
 pie();
