@@ -51,6 +51,7 @@ if(isset($_POST['btnAceptar']))
 		</div>';
 	}
 
+	header("refresh:2; url=principal.php", true, 303);	
 }
 pie();
  ?>

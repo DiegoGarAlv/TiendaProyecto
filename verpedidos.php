@@ -81,5 +81,8 @@ if($_SESSION['usuario']=="admin")
 {
 	print'<button id="generarListadoPedidos" name="generarListadoPedidos" class="btn btn-danger">Generar PDF</button>';
 }
+else{
+	print'<button id="generarListadoPedidosUser" name="generarListadoPedidosUser" class="btn btn-danger">Generar PDF</button>';
+}
 pie();
 ?>

@@ -69,7 +69,35 @@ function mostrar(){
 			$precios=$_SESSION["precio"];
 			$unidades=$_SESSION["unidades"];
 			$dimension=COUNT($productos);
-			print'<table class="table table-striped">
+			
+			$usuario = $_SESSION["usuario"];
+			$usuconexion=mysqli_connect("localhost","root","","tiendamuebles")or die("Fallo en la conexión"); 
+			$ususelect = "SELECT dni , nombre, direccion FROM clientes WHERE usuario='".$usuario."'";
+			$usuconsulta=mysqli_query($usuconexion,$ususelect)or die("Fallo en la select");
+			$usunumFilas=mysqli_num_rows($usuconsulta);
+				print'<table class="table table-bordered">
+					<thead style="background-color:#5D94FF;color:white">
+						<tr><th>DATOS DE ENVÍO</th></tr>
+						<tr>
+						<th>DNI</th>
+						<th>NOMBRE</th>
+						<th>DIRECCION</th>						
+						</tr>
+					</thead>
+					<tbody>';
+				for ($i = 0; $i < $usunumFilas; $i++) 
+				{
+					$usufila=mysqli_fetch_array($usuconsulta);				
+					print'<tr>			        
+			        <th>'.$usufila['dni'].'</th>
+			        <th>'.$usufila['nombre'].'</th>
+					<th>'.$usufila['direccion'].'</th>					
+			      	</tr>';
+				}
+				print '</tbody>
+  				</table>';
+			print'
+			<table class="table table-striped">
 			    <thead>
 			      <tr>
 			        <th>Nombre artículo</th>
@@ -92,8 +120,12 @@ function mostrar(){
 			print '</tbody>
   				</table>
   				<form action="cesta.php" method="post">
-  					<button type="submit" name="btnAceptar" class="btn btn-success">Comprar</button>
-  				</form>';
+					<button type="submit" name="btnAceptar" class="btn btn-success">Confirmar Compra</button>
+					<button type="submit" name="btnSeguir" class="btn btn-primary">Continuar Comprando</button>					
+					<button type="submit" name="btnVaciar" class="btn btn-danger">Vaciar Cesta</button>
+					<a href="pdf/ticket.php" target="_blank">Generar Ticket de Compra</a>
+				</form>							
+				  ';
   			if(isset($_POST['btnAceptar']))
 			{
 				$conexion=mysqli_connect("localhost","root","","tiendamuebles")or die("Fallo en la conexión"); 
@@ -122,7 +154,7 @@ function mostrar(){
 
 						$insertarLineas="INSERT INTO lineas (num_pedido,num_linea,producto,unidades) VALUES (".$resultadomax['maximo'].",".($i+1).",'".$resultadocodigo['cod']."',".$_SESSION['unidades'][$i].")";
 						$consulta4=mysqli_query($conexion,$insertarLineas);						
-					}
+					}			
 
 					print'<div class="alert alert-success">
 			  		<strong>¡LISTO!</strong> Pedido realizado.
@@ -134,11 +166,28 @@ function mostrar(){
 					unset($_SESSION["total"]);
 					unset($_SESSION["contador"]);
 
-					header("refresh:2; url=index.php", true, 303);	
+					header("refresh:2; url=principal.php", true, 303);	
 				}
 
 			}
-  			
+			if(isset($_POST['btnVaciar']))
+			{
+				print '<div class="alert alert-info">
+  					<strong>COMPRA ANULADA</strong>
+				</div>';
+			
+				unset($_SESSION["precio"]);
+				unset($_SESSION["producto"]);
+				unset($_SESSION["unidades"]);
+				unset($_SESSION["total"]);
+				unset($_SESSION["contador"]);
+
+				header("refresh:2; url=principal.php", true, 303);	
+			}	
+			if(isset($_POST['btnSeguir']))
+			{
+				header("location:principal.php");	
+			}		
 		}
 		else
 		{

@@ -16,7 +16,7 @@ function cabecera(){
 		<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="index.php">WoodenOffice</a>
+	      <a class="navbar-brand" href="principal.php">WoodenOffice</a>
 	    </div>
 	    <ul class="nav navbar-nav">';
 	      if($_SESSION['usuario']==null)
@@ -52,13 +52,19 @@ function cabecera(){
 	      {
 	      	print'
 	      	<li><a href="cambiardatos.php">'.$_SESSION['usuario'].' <span class="glyphicon glyphicon-off"></span></a></li>
-	      	<li><a href="cesta.php">Cesta <span class="glyphicon glyphicon-usd"></span></a></li>
+			 '; 
+			  if(!isset($_SESSION['contador'])){
+				echo '<li><a href="cesta.php">Cesta <span class="glyphicon glyphicon-usd"></span></a></li>';
+				}else{
+				echo '<li><a href="cesta.php">Cesta <span class="badge badge-light">'.$_SESSION['contador'].'</span></a></li>';
+			}
+			print'			
 	      	<li><a href="verpedidos.php">Ver Pedidos <span class="glyphicon glyphicon-folder-open"></span></a></li>
 	      	<li><a href="cerrarsesion.php">Cerrar Sesión <span class="glyphicon glyphicon-remove"></span></a></li>';
 	  	  }
 	print' 
 	    </ul>
-	   		<a class="navbar-brand pull-right" href="index.php">
+	   		<a class="navbar-brand pull-right" href="principal.php">
         		<img alt="logo" src="logo.png">
       		</a> 
 	  </div>

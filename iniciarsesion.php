@@ -44,7 +44,7 @@ if(isset($_POST['btnAceptar']))
 		if($numFilas != 0)
 		{
 			$_SESSION['usuario']=$usuario;
-			header('Location: index.php');							
+			header('Location: principal.php');							
 		}
 		else
 		{

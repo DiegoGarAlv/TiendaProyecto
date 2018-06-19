@@ -114,3 +114,41 @@ $("#generarListadoProductos").click(function(e){
                                             }        
         });
 });
+$("#generarListadoPedidosUser").click(function(e){    
+    $.ajax({
+        url: "getDatos/pedidosuser.php",
+        type: "GET",
+        async: true,        
+        success: function(oPedidos, sStatus, oAjax)
+        {       
+            var datosRecogidos = [];
+
+            for (var i = 0 ; i< oPedidos.length; i++)
+            {                    
+                var Pedidos = oPedidos[i]
+                datosRecogidos.push(Pedidos);
+            }        
+               
+            var pdf = new jsPDF();
+                pdf.text(20,20,"Listado de Pedidos");
+                
+                pdf.text(20,30,"Nombre");
+                pdf.text(60,30,"Pedido");
+                pdf.text(100,30,"Fecha");
+                pdf.text(150,30,"Total");
+                pdf.text(20,35,"---------------------------------------------------------------------------------------");
+                
+                var horizontal = 20;
+                var vertical = 40;
+                for (var i = 0 ; i< datosRecogidos.length; i++)
+                {   
+                    pdf.text(20,vertical,datosRecogidos[i].nombre);
+                    pdf.text(60,vertical,datosRecogidos[i].pedido);
+                    pdf.text(100,vertical,datosRecogidos[i].fecha);
+                    pdf.text(150,vertical,datosRecogidos[i].total);
+                    vertical+=10;
+                }
+                pdf.save('ListadoPedidos.pdf');            
+                                            }        
+        });
+});
